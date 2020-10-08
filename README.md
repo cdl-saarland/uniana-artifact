@@ -34,17 +34,21 @@ Keep it open for the next steps.
 
 For licensing reasons, we cannot provide SPEC ACCEL 1.3 with the Docker image. However, there is a script to plug-in your own copy of the benchmark suite.
 If you have the SPEC ACCEL 1.3 ISO file, run the following commands outside the Docker container to load and install it inside the running Docker container.
-   
+
+Mount the ISO file (`accel-1.3.iso`) on your host system as a loop device.
+
+    mkdir -p ~/iso
+    sudo mount accel-1.3.iso ~/iso -o loop
+
 Query the ID of the running Docker container (from a shell that is running outside the container):
     
     docker ps
 
-Then, also outside docker, use the following command to copy the SPEC ISO file into the container:
+Then, copy the contents of the ISO into the container (at ~/iso).
 
-    docker cp <spec_accel_13.iso> <container_id>:/home/theuser/workspace/
+    docker cp ~/iso <container_id>:/home/theuser/iso/
 
-
-Now, in the running container shell, run the following command to integrate SPEC ACCEL into the evaluation system:
+Now, in the running container shell (still at `~/workspace`), run the following command to integrate SPEC ACCEL into the evaluation system:
 
     bash install_spec.sh
 
@@ -52,18 +56,18 @@ Now, in the running container shell, run the following command to integrate SPEC
 
 Inside to the docker shell run
 
-    bash build.sh
+    bash ./build.sh
 
 ### Extract the Kernels
 
-    bash extract_kernels.sh
+    bash ./extract_kernels.sh
 
 ### Extract the LuxMark Kernels
 
 We provide the extracted LLVM IR for the LuxMark kernels in our image. 
 To copy them to the dump folder, call:
 
-    bash copy_luxmark_kernels.sh
+    bash ./copy_luxmark_kernels.sh
 
 (We provide instructions below on how to extract the LuxMark OpenCL IR kernels yourself)
 
@@ -73,14 +77,14 @@ To copy them to the dump folder, call:
 
 This will copy the extracted SIMT kernels into the input folder of dacomp, the Divergence Analysis tool.
 
-    bash transfer_kernels.sh 
+    bash ./transfer_kernels.sh 
 
 ### Evaluate the Divergence Analysis Configuration
 
 Finally, run the next line to start the actual evaluation.
 This will evaluate all divergence analysis configuration on the transfered kernel files.
 
-    bash evaluate.sh
+    bash ./evaluate.sh
 
 The variable `NUM_SAMPLES` is used in this script to configure the number of sample runs.
 Make sure to turn off hyper threading and turbo boost to get better timing results.
@@ -93,11 +97,16 @@ The table is stored in `~/workspace/result_tables.txt`.
 We provide pre-extracted OpenCL kernels (as LLVM IR) for LuxMark since its build prerequesites and setup blow up the image substantially.
 In case, you want to extract the kernels yourself, first make sure that you can run Docker OpenGL applications with your setup (the steps depend on your host system and gpu).
 LuxMark is a GUI application and needs your input to launch the OpenCL driver.
+
+First, build luxmark with the command
+
+    bash ./build_luxmark.sh
+
+When you are prompted for the root passwort, enter `theuser`. LuxMark requires a lot more packages to build and run then the rest of the setup.
 To run the luxmark binary, launch the following script, which will already set it up with our OpenCL driver for kernel extraction:
 
-    bash extract_luxmark_kernels.sh
+    bash ./extract_luxmark_kernels.sh
    
 Then, in the GUI, configure LuxMark for OpenCL over CPU and start it.
 After a while all kernel modules have been exported.
 You can end LuxMark as soon as it starts rendering.
-
