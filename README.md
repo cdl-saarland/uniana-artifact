@@ -9,8 +9,9 @@ The CoqDoc of the development is generatede by the included Makefile, but can al
 
 ## Instructions for the evaluation results
 
-There is a docker image with various scripts to help you reproduce the runtime and analysis results of the paper.
-You can reproduce our results with the Docker image in three main steps:
+The following assumes that you are running Docker on a x86_64 host machine.
+We provide a docker image with additional scripts to build all binaries and run the evaluation.
+There are three main steps once you have the Docker image running:
 First, you build LLVM, the OpenCL driver, the AnyDSL compiler stack and the OpenCL benchmarks.
 The OpenCL driver (pocl) and Thorin (AnyDSL) are modified to dump the compute kernel LLVM IR whenever an OpenCL application is run (or an AnyDSL application gets compiled).
 In the second step, we use the compilers and OpenCL benchmarks from the first step to extract the compute kernels for later analysis.
