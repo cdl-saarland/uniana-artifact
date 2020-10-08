@@ -2,9 +2,9 @@
 
 ## Proofs
 
-The mechanized proofs can be found (here)[https://github.com/cdl-saarland/uniana].
+The mechanized proofs can be found [here](https://github.com/cdl-saarland/uniana).
 This repository includes a README explaining how to compile the Coq proofs.
-The CoqDoc of the development is generatede by the included Makefile, but can also be investigated (here)[https://compilers.cs.uni-saarland.de/projects/uniana/toc.html].
+The CoqDoc of the development is generatede by the included Makefile, but can also be investigated [here](https://compilers.cs.uni-saarland.de/projects/uniana/toc.html).
 
 
 ## Instructions for the evaluation results
