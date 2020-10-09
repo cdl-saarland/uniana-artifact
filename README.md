@@ -28,7 +28,7 @@ Download the workspace with the Dockerfile from: https://zenodo.org/record/40737
 Extract the archive and go to the extracted folder `popl_release`.
 
 You need to supplement two datasets to continue. The HeteroMark data folder and the LuxMark scene folder.
-Goto `benchmarks/Hetero_Mark` and follow the instructions in `download_data.sh`.
+Goto `benchmarks/Hetero-Mark` and follow the instructions in `download_data.sh`.
 Then, download the [LuxMark Scene Archive](https://github.com/LuxCoreRender/LuxMark/releases/download/luxmark_v4.0alpha0/scenes.tgz) and extract it into `benchmarks/LuxMark/`.
 
 You are now ready to build the Docker image. Run:
