@@ -24,7 +24,7 @@ The last script invocation will end with a rendering of the evaluation tables (F
 
 #### Build the Docker image
 
-Download the workspace with the Dockerfile from: https://zenodo.org/record/4073724
+Download the workspace with the Dockerfile from [Google Drive](https://drive.google.com/file/d/1if8ZFk8_P_P5TSNXnrgACKbYL86IbOXU/view?usp=sharing).
 Extract the archive and go to the extracted folder `popl_release`.
 
 You need to supplement two datasets to continue. The HeteroMark data folder and the LuxMark scene folder.
