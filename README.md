@@ -22,16 +22,21 @@ The OpenCL driver (pocl) and Thorin (AnyDSL) are modified to dump the compute ke
 1. Run the divergence analysis tool (dacomp).
 The last script invocation will end with a rendering of the evaluation tables (Figure 5 and Figure 6).
 
-#### Get the Docker image
+#### Build the Docker image
 
 Download the workspace with the Dockerfile from: https://zenodo.org/record/4073724
 Extract the archive and go to the extracted folder `popl_release`.
-There, run the following command to build the Docker image:
+
+You need to supplement two datasets to continue. The HeteroMark data folder and the LuxMark scene folder.
+Goto `benchmarks/Hetero_Mark` and follow the instructions in `download_data.sh`.
+Then, download the [LuxMark Scene Archive](https://github.com/LuxCoreRender/LuxMark/releases/download/luxmark_v4.0alpha0/scenes.tgz) and extract it into `benchmarks/LuxMark/`.
+
+You are now ready to build the Docker image. Run:
 
     bash ./docker_build.sh
 
 This process will build the Docker image and install some of the necessary Ubuntu packages.
-You only need to do this once (unless the Dockerfile was updated).
+You only need to do this once (unless the workspace folder changes on the host).
 
 ### Launch the Docker image
 
