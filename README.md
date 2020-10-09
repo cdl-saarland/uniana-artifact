@@ -1,4 +1,4 @@
-# Artifacts for "An Abstract Interpretation for SIMD Divergence on Reducible Control Flow Graphs"
+# Artifacts for "An Abstract Interpretation for SPMD Divergence on Reducible Control Flow Graphs"
 
 Our paper is accompanied by two artifacts:
 
