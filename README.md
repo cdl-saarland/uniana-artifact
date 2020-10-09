@@ -24,7 +24,14 @@ The last script invocation will end with a rendering of the evaluation tables (F
 
 #### Get the Docker image
 
-TODO: URL
+Download the workspace with the Dockerfile from: https://zenodo.org/record/4073724
+Extract the archive and go to the extracted folder `popl_release`.
+There, run the following command to build the Docker image:
+
+    bash ./docker_build.sh
+
+This process will build the Docker image and install some of the necessary Ubuntu packages.
+You only need to do this once (unless the Dockerfile was updated).
 
 ### Launch the Docker image
 
@@ -32,7 +39,7 @@ The docker image needs to be attached your X-Server (required for LuxMark).
 This command will also open a bash inside the Docker container.
 Keep it open for the next steps.
 
-    docker run -ti --rm -e DISPLAY=${DISPLAY} -v /tmp/.X11-unix:/tmp/.X11-unix popl21_eval
+    bash ./docker_run.sh
 
 
 ### [Optional] Copy your ISO file of SPEC ACCEL 1.3
