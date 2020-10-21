@@ -33,6 +33,8 @@ The last script invocation will end with a rendering of the evaluation tables (F
 
 The following steps build all compiler components and benchmarks from source.
 The final script `./evaluate.sh` will perform the evaluation on your system and render result tables akin to Figure 6 and Figure 7 in the paper.
+Note that the runtime measurements reported in the paper were taken on a `Intel(R) Core(TM) i7-8565U` CPU with 24GB of RAM with an ArchLinux installation. We disabled hyper-threading and turbo boost and made sure that no other processes were interfering with the measurement process.
+You will not be able to reproduce the runtime measurements when running inside a VM - you still can reproduce the instruction, branch and loop statistics.
 
 #### Build the Docker image
 
