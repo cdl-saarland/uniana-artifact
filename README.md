@@ -86,11 +86,14 @@ Now, in the running container shell (still at `~/workspace`), run the following 
 
 #### Build Compilers and OpenCL host applications
 
-Inside to the docker shell run
+Inside the docker shell run (takes 1-2h):
 
     bash ./build.sh
 
 #### Extract the Kernels
+
+This command runs all OpenCL benchmarks and compiles all RV SPMD kernels (takes ~15min).
+The kernels are extracted to `~/workspace/extracted_kernels/`.
 
     bash ./extract_kernels.sh
 
@@ -107,22 +110,20 @@ To copy them to the dump folder, call:
 
 #### Transfer the dumped kernels to the analysis folder
 
-This will copy the extracted SPMD kernels into the input folder of dacomp, the Divergence Analysis tool.
+This will copy the extracted SPMD kernels (from `~/workspace/extracted_kernels`) into the input folder (`~/workspace/dacomp/kernels`) of dacomp, the Divergence Analysis tool.
 
     bash ./transfer_kernels.sh
 
 #### Evaluate the Divergence Analysis Configuration
 
-Finally, run the next line to start the actual evaluation.
-This will evaluate all divergence analysis configuration on the transfered kernel files.
+Finally, run the evaluation script to perform the actual evaluation.
+This will evaluate all divergence analysis configurations on the transfered kernel files in `~/workspace/dacomp/kernels` (takes about 5min with `NUM_SAMPLES=3`, the out of the box setting):
 
     bash ./evaluate.sh
 
-The variable `NUM_SAMPLES` is used in this script to configure the number of sample runs.
-Make sure to turn off hyper threading and turbo boost to get better timing results.
-When the script has finished (which may take a while for `NUM_SAMPLES=50`), it will print a result table similar to Figure 6 and 7 in the paper.
-The table is also stored in `~/workspace/result_tables.txt`.
-
+When the script has finished, it will print a result table similar to Figure 6 and 7 in the paper. The table is also stored in `~/workspace/result_tables.txt`. The variable `NUM_SAMPLES` is used in this script to configure the number of sample runs.
+Out of the box, `NUM_SAMPLES` is set to three, which is too low for proper runtime measurements, but allows you to check quickly that your setup works correctly.
+To get more robust runtime measurements, turn off hyper threading and turbo boost and change the valute of `NUM_SAMPLES` to at least `30` (expected script runtime ~30min).
 
 
 #### [Optional] LuxMark kernel extraction
