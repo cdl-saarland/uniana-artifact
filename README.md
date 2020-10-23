@@ -49,7 +49,7 @@ You are now ready to build the Docker image. Run:
 
     bash ./docker_build.sh
 
-This process will build the Docker image and install some of the necessary Ubuntu packages.
+This process will build the Docker image and install some of the necessary Ubuntu packages. It should take about 15min, depending on your system and internet connection.
 You only need to do this once (unless the workspace folder changes on the host).
 
 #### Launch the Docker image
